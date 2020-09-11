@@ -5,14 +5,17 @@
         pay_book_ticket: ::RedBusConfiguration['host'] + '/rest/v2/bookticket',
         get_paid_book: ::RedBusConfiguration['host'] + '/rest/v2/ticket'
  */
-var Koa = require('koa');
-var Router = require('koa-router');
+const Koa = require('koa');
+const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
+const { v4 as uuidv4 } = 'uuid';
 
-var app = new Koa();
+const app = new Koa();
 app.use(bodyParser());
 
-var router = new Router();
+const router = new Router();
+
+// REDBUS
 
 router.get('/rest/v2/availabletrips', (ctx, next) => {
     ctx.body = {
@@ -556,6 +559,33 @@ router.get('/rest/v2/ticket', (ctx, next) => {
             "isNoSeatLayoutBooking": "true"
         },
         "subCompany": ""
+    };
+});
+
+
+// PRAKERJA
+
+router.post('/api/v1/integration/payment/send-otp', (ctx, next) => {
+    ctx.body = {
+        "success": true,
+        "message": "OK",
+        "data": {
+            "payment_token": uuidv4(),
+            "phone_number": "0857XxXxX378"
+        }
+    };
+});
+
+router.post('/api/v1/integration/payment/authorize', (ctx, next) => {
+    ctx.body = {
+        "success": true,
+        "message": "OK",
+        "data": {
+          "invoice_code": "INV0001",
+          "transaction_code": uuidv4(),
+          "amount": 50000,
+          "status": "SUCCESS"
+        }
     };
 });
 
