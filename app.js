@@ -8,7 +8,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
-const { v4 as uuidv4 } = 'uuid';
+const uuid = 'uuid';
 
 const app = new Koa();
 app.use(bodyParser());
@@ -570,7 +570,7 @@ router.post('/api/v1/integration/payment/send-otp', (ctx, next) => {
         "success": true,
         "message": "OK",
         "data": {
-            "payment_token": uuidv4(),
+            "payment_token": uuid.v4(),
             "phone_number": "0857XxXxX378"
         }
     };
@@ -582,7 +582,7 @@ router.post('/api/v1/integration/payment/authorize', (ctx, next) => {
         "message": "OK",
         "data": {
           "invoice_code": "INV0001",
-          "transaction_code": uuidv4(),
+          "transaction_code": uuid.v4(),
           "amount": 50000,
           "status": "SUCCESS"
         }
