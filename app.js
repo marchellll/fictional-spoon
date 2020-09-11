@@ -8,7 +8,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
-const uuid = 'uuid';
+const uuid = require('uuid');
 
 const app = new Koa();
 app.use(bodyParser());
