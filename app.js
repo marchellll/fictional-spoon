@@ -565,7 +565,7 @@ router.get('/rest/v2/ticket', (ctx, next) => {
 
 // PRAKERJA
 
-router.post('/api/v1/integration/payment/send-otp', (ctx, next) => {
+router.post('/api/v1/integration/payment/send-otp', async (ctx, next) => {
     await new Promise(r => setTimeout(r, 10));
 
     ctx.body = {
@@ -578,7 +578,7 @@ router.post('/api/v1/integration/payment/send-otp', (ctx, next) => {
     };
 });
 
-router.post('/api/v1/integration/payment/authorize', (ctx, next) => {
+router.post('/api/v1/integration/payment/authorize', async (ctx, next) => {
     await new Promise(r => setTimeout(r, 10));
 
     ctx.body = {
